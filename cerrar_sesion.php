@@ -4,5 +4,5 @@
         unset($_SESSION['carrito']);
     }
     session_destroy();
-    header('Location: index.php?m=2');
+    header('Location: index.php?m=3');
 ?>

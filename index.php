@@ -11,18 +11,6 @@
     <title>MiTienda</title>
   </head>
   <body>
-    <?php if (!empty($_GET['m'])):?>
-        <?php if ($_GET['m'] == 1):?>
-            <div class="alert alert-success" role="alert">
-                <?php echo "Producto ".$_GET['prod']." añadido exitosamente."?>
-            </div>
-        <?php elseif ($_GET['m'] == 2):?>
-            <div class="alert alert-danger" role="alert">
-                Sesión cerrada con éxito.
-            </div>
-        <?php endif?>
-    <?php endif?>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <h5>MiTienda</h5>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +31,22 @@
         </div>
     </nav>
 
+    <?php if (!empty($_GET['m'])):?>
+        <?php if ($_GET['m'] == 1):?>
+            <div class="alert alert-success" role="alert">
+                <?php echo "Producto ".$_GET['prod']." añadido exitosamente."?>
+            </div>
+        <?php elseif ($_GET['m'] == 2):?>
+            <div class="alert alert-warning" role="alert">
+            <?php echo "Producto ".$_GET['prod']." eliminado exitosamente."?>
+            </div>
+        <?php elseif ($_GET['m'] == 3):?>
+            <div class="alert alert-danger" role="alert">
+                Sesión cerrada con éxito.
+            </div>
+        <?php endif?>
+    <?php endif?>
+
     <main class="m-5">
         <style>
             h2{
@@ -53,7 +57,7 @@
                 justify-content: space-around;
             }
             td{
-                width:33.4%;
+                width:25%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -63,9 +67,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td >Producto</td>
-                    <td >Precio</td>
-                    <td >Agregar</td>
+                    <td>Producto</td>
+                    <td>Precio</td>
+                    <td>Agregar</td>
+                    <td>Eliminar</td>
                 </tr>
             </thead>
             <tbody>
@@ -73,16 +78,19 @@
                     <td ><img style='max-width:100%; max-height: 10vh;' src="./public/img/coke.png" alt="Coca Cola"></td>
                     <td >$500</td>
                     <td ><a href="agregar.php?prod=coca_cola&precio=500" class="btn btn-primary">Agregar</a></td>
+                    <td ><a href="eliminar.php?prod=coca_cola&precio=500" class="btn btn-warning">Eliminar</a></td>
                 </tr>
                 <tr>
                     <td ><img style='max-width:100%; max-height: 10vh;' src="./public/img/chips.png" alt="Papas Fritas"></td>
                     <td >$900</td>
                     <td ><a href="agregar.php?prod=papas_fritas&precio=900" class="btn btn-primary">Agregar</a></td>
+                    <td ><a href="eliminar.php?prod=papas_fritas&precio=900" class="btn btn-warning">Eliminar</a></td>
                 </tr>
                 <tr>
                     <td ><img style='max-width:100%; max-height: 10vh;' src="./public/img/cookie.png" alt="Galletas"></td>
                     <td >$750</td>
                     <td ><a href="agregar.php?prod=galleta&precio=750" class="btn btn-primary">Agregar</a></td>
+                    <td ><a href="eliminar.php?prod=galleta&precio=750" class="btn btn-warning">Eliminar</a></td>
                 </tr>
             </tbody>
         </table>

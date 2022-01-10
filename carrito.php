@@ -3,19 +3,19 @@
     if (!isset($_SESSION['carrito']) ){
         $_SESSION['carrito'] = [];
     }
-
     $total = 0;
     $carrito = [];
  
     foreach ($_SESSION['carrito'] as $prod){
         if (!isset ($carrito[$prod['producto']])){
             $carrito[$prod['producto']] = [];
-            $carrito[$prod['producto']]['cantidad'] = 1;
             $carrito[$prod['producto']]['precio'] = $prod['precio'];
+            $carrito[$prod['producto']]['cantidad'] = $prod['cnt'];
         } else {
-            $carrito[$prod['producto']]['cantidad'] += 1;
+            $carrito[$prod['producto']]['cantidad'] += $prod['cnt'];
         }
     }
+    
 ?>
 
 <!doctype html>
@@ -79,18 +79,20 @@
             </thead>
             <tbody>
                 <?php foreach ($carrito as $key => $val):?>
-                    <tr>
-                        <td>
-                            <?php print_r($key)?>
-                        </td>
-                        <td>
-                            <?php echo ($carrito[$key]['cantidad'])?>
-                        </td>
-                        <td>
-                            <?php echo "$".$carrito[$key]['cantidad']*$carrito[$key]['precio']?>
-                        </td>
-                        <?php $total += $carrito[$key]['cantidad']*$carrito[$key]['precio'] ?>
-                    </tr>
+                    <?php if($carrito[$key]['cantidad']>0):?>
+                        <tr>
+                            <td>
+                                <?php print_r($key)?>
+                            </td>
+                            <td>
+                                <?php echo ($carrito[$key]['cantidad'])?>
+                            </td>
+                            <td>
+                                <?php echo "$".$carrito[$key]['cantidad']*$carrito[$key]['precio']?>
+                            </td>
+                            <?php $total += $carrito[$key]['cantidad']*$carrito[$key]['precio'] ?>
+                        </tr>
+                    <?php endif?>
                 <?php endforeach?>
                 <tr>
                     <?php echo "<h4>Total: $".$total."</h4>"?>
